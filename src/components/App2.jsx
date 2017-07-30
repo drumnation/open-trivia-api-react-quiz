@@ -12,7 +12,7 @@ class App extends Component {
             questions: [
                 {
                     id: 1,
-                    text: 'What is your name?',
+                    question: 'What is your name?',
                     choices: [
                         {
                             id: 'a',
@@ -82,6 +82,7 @@ class App extends Component {
 
     componentDidMount() {
         getQuestionsFromAPI()
+        console.log('got here')
     }
 
     render() {
