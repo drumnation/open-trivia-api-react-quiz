@@ -1,23 +1,40 @@
 import React, { Component } from 'react'
+import AnswerKey from './AnswerKey.jsx'
+import { Button } from 'react-bootstrap'
 
 class Results extends Component {
+    createScoreMessage(percent) {
+        let message = ''
+        if (percent == 100) {
+            message = 'Perfect Score!'
+        } else if (percent > 80) {
+            message = 'Awesome Job!'
+        } else if (percent < 80 && percent > 60) {
+            message = 'You Did Ok!'
+        } else {
+            message = "Don't Quit your Day Job!"
+        }
+        return message
+    }
+
     render() {
         var percent = (this.props.score / this.props.questions.length * 100)
-        switch (percent) {
-            case (percent > 80):
-                var message = 'Awesome Job!'; break
-            case (percent <= 80 && percent <= 60):
-                var message = 'You Did Ok!'; break
-            default:
-                var message = 'You Did Horrible!'; break
-        }
         return (
-            <div className="well">
-                <h4>You Got {this.props.score} out of {this.props.questions.length} Correct</h4>
-                <h1>{percent}% - {message}</h1>
-                <hr />
-                <a href="/app">Take Again</a>
-            </div>
+            <div>
+                <div className="well">
+                    <h4>You Got {this.props.score} out of {this.props.questions.length} Correct</h4>
+                    <h1>{percent}%</h1>
+                    <hr />
+                    <h2>{this.createScoreMessage(percent)}</h2>
+                    <hr />
+                    <a href="/app"><Button bsStyle="primary">Take Again</Button></a>
+                </div>
+                <div className="well">
+                    <h3>Answer Key</h3>
+                    <hr />
+                    <AnswerKey questions={this.props.questions} />
+                </div>
+            </div >
         )
     }
 }

@@ -1,3 +1,14 @@
 .choice {
     margin-left: 10px;
 } 
+.choice-id {
+    font-weight: bold;
+    margin-right: 4px;
+}
+.difficulty {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.answer-key {
+    margin: 0 0 3px 0;
+}

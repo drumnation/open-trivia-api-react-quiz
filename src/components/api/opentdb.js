@@ -9,34 +9,37 @@ const getQuestionsFromAPI = async () => {
     }
 }
 
-const formatAPIQuizData = async (questions) => {
-    try {
-        let formattedQuestions = await questions.map((question, i) => {
-            console.log(question)
-            let choices = question.correct_answer.split(',').concat(question.incorrect_answers)
-            let formattedChoices = choices.map((choice, j) => {
-                const letters = ['A. ', 'B. ', 'C. ', 'D. ', 'E. ', 'F. ']
-                return { id: letters[j], text: choice.trim() }
-            })
-            const formattedQuestion = {
-                id: i,
-                category: question.category,
-                type: question.type,
-                difficulty: question.difficulty,
-                text: question.question.replace(/&quot;/g, '"').replace(/&#039;/g, "'"),
-                choices: formattedChoices,
-                correct: question.correct_answer,
-                incorrect: question.incorrect_answers
-            }
-            return formattedQuestion
-        })
-        return formattedQuestions
-    } catch (err) {
-        console.log(err)
+const convertCharsToLiteral = string => {
+    return string.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&uuml;/g, "ü").replace(/&amp;/g, "&").replace(/&ouml;/g, "ö").replace(/&prime;/g, "´")
+}
+
+const formatChoices = choices => {
+    return choices.map((choice, index) => {
+        return { text: convertCharsToLiteral(choice.trim()) }
+    })
+}
+const combineAllChoices = question => question.correct_answer.split(',').concat(question.incorrect_answers)
+
+const formatQuestion = (question, index) => {
+    return {
+        id: index,
+        category: question.category,
+        type: question.type,
+        difficulty: question.difficulty,
+        text: convertCharsToLiteral(question.question),
+        choices: formatChoices(combineAllChoices(question)),
+        correct: convertCharsToLiteral(question.correct_answer.trim()),
+        incorrect: question.incorrect_answers
     }
 }
 
-const quizData = async () => {
+const formatAPIQuizData = questions => {
+    return questions.map((question, index) => {
+        return formatQuestion(question, index)
+    })
+}
+
+const createQuizData = async () => {
     try {
         const questions = await getQuestionsFromAPI()
         const formattedQuestions = await formatAPIQuizData(questions)
@@ -46,4 +49,4 @@ const quizData = async () => {
     }
 }
 
-export { quizData }
+export { createQuizData }

@@ -13,9 +13,9 @@ class Question extends Component {
     }
 
     shuffleArray(array) {
-        for (var i = array.length - 1; i > 0; i--) {
-            var j = Math.floor(Math.random() * (i + 1))
-            var temp = array[i]
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1))
+            let temp = array[i]
             array[i] = array[j]
             array[j] = temp
         }
@@ -24,17 +24,17 @@ class Question extends Component {
 
     render() {
         const { question } = this.props
-        console.log(question.text)
         return (
             <div className="well">
                 <h3>{question.text}</h3>
                 <hr />
                 <ul className="list-group">
                     {
-                        this.props.question.choices.map(choice => {
+                        this.shuffleArray(this.props.question.choices).map((choice, index) => {
+                            const letters = ['A. ', 'B. ', 'C. ', 'D. ', 'E. ', 'F. ']
                             return (
-                                <li className="list-group-item" key={choice.id}>
-                                    <span>{choice.id}</span>
+                                <li className="list-group-item" key={letters[index]}>
+                                    <span className="choice-id">{letters[index]}</span>
                                     <input
                                         type="radio"
                                         onChange={this.onChange.bind(this, choice.text)}
@@ -47,6 +47,8 @@ class Question extends Component {
                         })
                     }
                 </ul>
+                <strong>Category: </strong>{question.category}
+                <span className="difficulty pull-right">{question.difficulty}</span><br />
             </div>
         )
     }
