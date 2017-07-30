@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import Question from './Question.jsx'
 
 class QuestionList extends Component {
+    constructor(props) {
+        super(props)
+    }
 
     render() {
         const { questions } = this.props

@@ -3,12 +3,13 @@ import React, { Component } from 'react'
 class Results extends Component {
     render() {
         var percent = (this.props.score / this.props.questions.length * 100)
-        if (percent > 80) {
-            var message = 'Awesome Job'
-        } else if (percent < 80 && percent < 60) {
-            var message = 'You Did Ok!'
-        } else {
-            var message = 'You Did Horrible!'
+        switch (percent) {
+            case (percent > 80):
+                var message = 'Awesome Job!'; break
+            case (percent <= 80 && percent <= 60):
+                var message = 'You Did Ok!'; break
+            default:
+                var message = 'You Did Horrible!'; break
         }
         return (
             <div className="well">

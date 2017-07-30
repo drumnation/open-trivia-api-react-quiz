@@ -3,72 +3,16 @@ import ReactDOM from 'react-dom'
 import QuestionList from './quiz/QuestionList.jsx'
 import Scorebox from './quiz/Scorebox.jsx'
 import Results from './quiz/Results.jsx'
-import { getQuestionsFromAPI } from './api/opentdb.js'
+import { quizData } from './api/opentdb.js'
 
 class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            questions: [
-                {
-                    id: 1,
-                    text: 'What is your name?',
-                    choices: [
-                        {
-                            id: 'a',
-                            text: 'Dave'
-                        },
-                        {
-                            id: 'b',
-                            text: 'Tony'
-                        },
-                        {
-                            id: 'c',
-                            text: 'Jim'
-                        }
-                    ],
-                    correct: 'b',
-                },
-                {
-                    id: 2,
-                    text: "What is your mother's name?",
-                    choices: [
-                        {
-                            id: 'a',
-                            text: 'Deborah'
-                        },
-                        {
-                            id: 'b',
-                            text: 'Allison'
-                        },
-                        {
-                            id: 'c',
-                            text: 'Julie'
-                        }
-                    ],
-                    correct: 'a',
-                }, {
-                    id: 3,
-                    text: "What is your friend's name?",
-                    choices: [
-                        {
-                            id: 'a',
-                            text: 'Eddie'
-                        },
-                        {
-                            id: 'b',
-                            text: 'Chris'
-                        },
-                        {
-                            id: 'c',
-                            text: 'Matt'
-                        }
-                    ],
-                    correct: 'c',
-                },
-            ],
+            questions: [],
             score: 0,
-            current: 1
+            current: 1,
+            loading: undefined
         }
     }
 
@@ -80,29 +24,39 @@ class App extends Component {
         this.setState({ score })
     }
 
-    componentDidMount() {
-        getQuestionsFromAPI()
+    async componentDidMount() {
+        try {
+            this.setState({ loading: true })
+            this.setState({ questions: await quizData(), loading: false })
+        } catch (err) {
+            console.log(err)
+        }
     }
 
     render() {
-        if (this.state.current > this.state.questions.length) {
-            var scorebox = ''
-            var results = <Results {...this.state} />
+        console.log(this.state)
+        if (this.state.loading === false) {
+            if (this.state.current >= this.state.questions.length) {
+                var scorebox = ''
+                var results = <Results {...this.state} />
+            } else {
+                var scorebox = <Scorebox {...this.state} />
+                var results = ''
+            }
+            return (
+                <div>
+                    {scorebox}
+                    <QuestionList
+                        {...this.state}
+                        setCurrent={this.setCurrent.bind(this)}
+                        setScore={this.setScore.bind(this)}
+                    />
+                    {results}
+                </div>
+            )
         } else {
-            var scorebox = <Scorebox {...this.state} />
-            var results = ''
+            return null
         }
-        return (
-            <div>
-                {scorebox}
-                <QuestionList
-                    {...this.state}
-                    setCurrent={this.setCurrent.bind(this)}
-                    setScore={this.setScore.bind(this)}
-                />
-                {results}
-            </div>
-        )
     }
 }
 
