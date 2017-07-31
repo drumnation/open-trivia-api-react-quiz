@@ -12,18 +12,14 @@ class Question extends Component {
         setCurrent(this.props.current + 1)
     }
 
-    shuffleChoices(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1))
-            let temp = array[i]
-            array[i] = array[j]
-            array[j] = temp
+    shuffleChoices(choices) {
+        for (let index = choices.length - 1; index > 0; index--) {
+            let index_2 = Math.floor(Math.random() * (index + 1))
+            let temp = choices[index]
+            choices[index] = choices[index_2]
+            choices[index_2] = temp
         }
-        return array
-    }
-
-    showFeedback() {
-
+        return choices
     }
 
     render() {
@@ -35,7 +31,7 @@ class Question extends Component {
                     <hr />
                     <ListGroup>
                         {
-                            this.shuffleChoices(this.props.question.choices).map((choice, index) => {
+                            this.shuffleChoices(question.choices).map((choice, index) => {
                                 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
                                 return (
                                     <ListGroupItem key={alphabet[index]}>
