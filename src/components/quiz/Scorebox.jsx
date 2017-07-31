@@ -5,14 +5,10 @@ class Scorebox extends Component {
     render() {
         return (
             <Well className="scorebox">
-                <Row>
-                    <Col md={10}>
-                        Question <strong>{this.props.current + 1}</strong> out of <strong>{this.props.questions.length}</strong>
-                    </Col>
-                    <Col md={2}>
-                        <strong>Score: </strong><span className="score">{this.props.score}</span>
-                    </Col>
-                </Row>
+                <center>
+                    Question <strong>{this.props.current + 1}</strong> of <strong>{this.props.questions.length}</strong> 
+                    <strong>  (Score: </strong><span className="score">{this.props.score}</span>)
+                </center>
             </Well>
         )
     }

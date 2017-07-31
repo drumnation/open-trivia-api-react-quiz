@@ -59,7 +59,7 @@ class Question extends Component {
                         <Col className="category" md={11}>
                             <strong>Category: </strong>{question.category}
                         </Col>
-                        <Col className="difficulty" md={2}>
+                        <Col className="difficulty" md={1}>
                             {question.difficulty}
                         </Col>
                     </Row>
