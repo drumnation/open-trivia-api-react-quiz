@@ -2,11 +2,10 @@ import React, { Component } from 'react'
 import { Button, ListGroup, ListGroupItem, Well } from 'react-bootstrap'
 
 class Question extends Component {
-    onChange(questionText, event) {
+    onChange(choice, event) {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
-        let chosen = questionText
-        if (chosen === question.correct) {
+        if (choice === question.correct) {
             setScore(this.props.score + 1)
         }
         setCurrent(this.props.current + 1)
