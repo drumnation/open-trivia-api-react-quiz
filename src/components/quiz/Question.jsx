@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, ListGroup, ListGroupItem, Well, Panel } from 'react-bootstrap'
+import { Button, ListGroup, ListGroupItem, Well } from 'react-bootstrap'
 
 class Question extends Component {
     onChange(questionText, event) {
