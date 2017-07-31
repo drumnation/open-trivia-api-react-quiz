@@ -1,18 +1,18 @@
 import React, { Component } from 'react'
+import { Button, ListGroup, ListGroupItem, Well, Panel } from 'react-bootstrap'
 
 class Question extends Component {
     onChange(questionText, event) {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
-        let selected = questionText
-        if (selected === question.correct) {
+        let chosen = questionText
+        if (chosen === question.correct) {
             setScore(this.props.score + 1)
         }
-
         setCurrent(this.props.current + 1)
     }
 
-    shuffleArray(array) {
+    shuffleChoices(array) {
         for (let i = array.length - 1; i > 0; i--) {
             let j = Math.floor(Math.random() * (i + 1))
             let temp = array[i]
@@ -22,36 +22,50 @@ class Question extends Component {
         return array
     }
 
+    showFeedback() {
+
+    }
+
     render() {
         const { question } = this.props
         return (
-            <div className="well">
-                <h3>{question.text}</h3>
-                <hr />
-                <ul className="list-group">
-                    {
-                        this.shuffleArray(this.props.question.choices).map((choice, index) => {
-                            const letters = ['A. ', 'B. ', 'C. ', 'D. ', 'E. ', 'F. ']
-                            return (
-                                <li className="list-group-item" key={letters[index]}>
-                                    <span className="choice-id">{letters[index]}</span>
-                                    <input
-                                        type="radio"
-                                        onChange={this.onChange.bind(this, choice.text)}
-                                        name={question.id}
-                                        value={choice.id}
-                                    />
-                                    <span className="choice">{choice.text}</span>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
-                <strong>Category: </strong>{question.category}
-                <span className="difficulty pull-right">{question.difficulty}</span><br />
+            <div>
+                <Well>
+                    <h3>{question.text}</h3>
+                    <hr />
+                    <ListGroup>
+                        {
+                            this.shuffleChoices(this.props.question.choices).map((choice, index) => {
+                                const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+                                return (
+                                    <ListGroupItem key={alphabet[index]}>
+                                        <Button
+                                            bsStyle={'primary'}
+                                            onClick={this.onChange.bind(this, choice.text)}
+                                            name={question.id}
+                                            value={choice.id}
+                                        >
+                                            {alphabet[index]}
+                                        </Button>
+                                        <span className="choice">{choice.text}</span>
+                                    </ListGroupItem>
+                                )
+                            })
+                        }
+                    </ListGroup>
+                    <strong>Category: </strong>{question.category}
+                    <span className="difficulty pull-right">{question.difficulty}</span><br />
+                </Well>
             </div>
         )
     }
 }
+
+const styles = {
+    neutral: {},
+    correct: {},
+    wrong: {}     
+}
+
 
 export default Question

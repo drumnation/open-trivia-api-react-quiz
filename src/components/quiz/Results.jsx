@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import AnswerKey from './AnswerKey.jsx'
-import { Button } from 'react-bootstrap'
+import { Button, Well } from 'react-bootstrap'
 
 class Results extends Component {
     createScoreMessage(percent) {
@@ -21,19 +21,19 @@ class Results extends Component {
         var percent = (this.props.score / this.props.questions.length * 100)
         return (
             <div>
-                <div className="well">
+                <Well>
                     <h4>You Got {this.props.score} out of {this.props.questions.length} Correct</h4>
                     <h1>{percent}%</h1>
                     <hr />
                     <h2>{this.createScoreMessage(percent)}</h2>
                     <hr />
                     <a href="/app"><Button bsStyle="primary">Take Again</Button></a>
-                </div>
-                <div className="well">
+                </Well>
+                <Well>
                     <h3>Answer Key</h3>
                     <hr />
                     <AnswerKey questions={this.props.questions} />
-                </div>
+                </Well>
             </div >
         )
     }
