@@ -12,6 +12,8 @@
 .answer-key {
     margin: 0 0 3px 0;
 }
-.validationFeedback {
+.wrong-x {
     font-size: 200%;
+    font-weight: bolder;
+    color: red;
 }

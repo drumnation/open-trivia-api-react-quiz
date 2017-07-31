@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
 import { Button, ListGroup, ListGroupItem, Well } from 'react-bootstrap'
 
+var wrong = ''
+
 class Question extends Component {
     onChange(choice, event) {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
         if (choice === question.correct) {
             setScore(this.props.score + 1)
+        } else {
+            if (wrong === '') {
+                wrong = 'X'
+                setCurrent(this.props.current + 1)
+            } else {
+                wrong = wrong + ' X'
+                setCurrent(this.props.current + 1)
+            }
         }
         setCurrent(this.props.current + 1)
     }
@@ -51,6 +61,13 @@ class Question extends Component {
                     <strong>Category: </strong>{question.category}
                     <span className="difficulty pull-right">{question.difficulty}</span><br />
                 </Well>
+                { 
+                    wrong === ''
+                        ?   null 
+                        :   <Well bsStyle="small">
+                                <span className="wrong-x">{wrong}</span>
+                            </Well>
+                }
             </div>
         )
     }

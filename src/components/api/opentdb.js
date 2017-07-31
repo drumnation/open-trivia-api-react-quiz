@@ -10,7 +10,15 @@ const getQuestionsFromAPI = async () => {
 }
 
 const convertCharsToLiteral = string => {
-    return string.replace(/&quot;/g, '"').replace(/&#039;/g, "'").replace(/&uuml;/g, "ü").replace(/&amp;/g, "&").replace(/&ouml;/g, "ö").replace(/&prime;/g, "´")
+    return (
+        string.replace(/&quot;/g, '"')
+            .replace(/&#039;/g, "'")
+            .replace(/&uuml;/g, "ü")
+            .replace(/&amp;/g, "&")
+            .replace(/&ouml;/g, "ö")
+            .replace(/&prime;/g, "´")
+            .replace(/&rsquo;/g, "’")
+    )
 }
 
 const formatChoices = choices => {
