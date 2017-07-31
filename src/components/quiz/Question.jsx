@@ -8,7 +8,7 @@ class Question extends Component {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
         if (choice === question.correct) {
-            results.push('✔')
+            results.push('✓')
             setScore(this.props.score + 1)
             setCurrent(this.props.current + 1)
         } else {
@@ -59,7 +59,7 @@ class Question extends Component {
                         <Col className="category" md={11}>
                             <strong>Category: </strong>{question.category}
                         </Col>
-                        <Col className="difficulty" md={1}>
+                        <Col className="difficulty" md={2}>
                             {question.difficulty}
                         </Col>
                     </Row>
