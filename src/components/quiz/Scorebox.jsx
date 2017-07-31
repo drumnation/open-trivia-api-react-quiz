@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Well, Row, Col } from 'react-bootstrap'
+import { Well } from 'react-bootstrap'
 
 class Scorebox extends Component {
     render() {
