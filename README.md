@@ -1,4 +1,4 @@
-# Make a quiz code challenge
+# Make a quiz in React.js code challenge
 
 ## Assignment:
 1. Create an online quiz component that can be placed on a web page. 
