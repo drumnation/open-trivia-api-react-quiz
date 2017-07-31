@@ -12,7 +12,7 @@ body {
     color: green;
     font-weight: bold;
 }
-    
+
 .choice {
     font-size: 140%;
     margin-left: 10px;
@@ -37,8 +37,8 @@ body {
     margin: 0 0 3px 0;
 }
 
-.wrong-x {
-    font-size: 200%;
+.results {
+    font-size: 500%;
     font-weight: bolder;
-    color: red;
+    text-align: center;
 }

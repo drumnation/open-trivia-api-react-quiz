@@ -1,22 +1,19 @@
 import React, { Component } from 'react'
 import { Button, ListGroup, ListGroupItem, Well } from 'react-bootstrap'
 
-var wrong = ''
+var results = []
 
 class Question extends Component {
     onChange(choice, event) {
         event.preventDefault()
         const { setCurrent, setScore, question } = this.props
         if (choice === question.correct) {
+            results.push('✔')
             setScore(this.props.score + 1)
+            setCurrent(this.props.current + 1)
         } else {
-            if (wrong === '') {
-                wrong = 'X'
-                setCurrent(this.props.current + 1)
-            } else {
-                wrong = wrong + ' X'
-                setCurrent(this.props.current + 1)
-            }
+            results.push('X')
+            setCurrent(this.props.current + 1)
         }
         setCurrent(this.props.current + 1)
     }
@@ -64,14 +61,44 @@ class Question extends Component {
                     <span className="difficulty pull-right">{question.difficulty}</span><br />
                 </Well>
                 {
-                    wrong === ''
-                        ? null
+                    results.length === 0
+                        ? <div></div>
                         : <Well bsStyle="small">
-                            <span className="wrong-x">{wrong}</span>
+                            <div className="results">
+                                <div className="center">
+                                    {
+                                        results.map( result => {
+                                            console.log(result)
+                                            if (result === 'X') {
+                                                return (
+                                                    <span style={style.wrong}>
+                                                        {`   ${result}   `}
+                                                    </span>
+                                                )
+                                            } else {
+                                                return (
+                                                    <span style={style.correct}>
+                                                        {`   ${result}   `}
+                                                    </span>
+                                                )
+                                            }
+                                        })
+                                    }
+                                </div>
+                            </div>
                         </Well>
                 }
             </div>
         )
+    }
+}
+
+const style = {
+    correct: {
+        color: '#008000'
+    },
+    wrong: {
+        color: '#FF0000'
     }
 }
 
