@@ -14,6 +14,7 @@ const convertCharsToLiteral = string => {
         string.replace(/&quot;/g, '"')
             .replace(/&#039;/g, "'")
             .replace(/&uuml;/g, "ü")
+            .replace(/&Uuml;/g, "Ü")
             .replace(/&amp;/g, "&")
             .replace(/&ouml;/g, "ö")
             .replace(/&prime;/g, "´")

@@ -27,7 +27,7 @@ class Results extends Component {
                     <hr />
                     <h2>{this.createScoreMessage(percent)}</h2>
                     <hr />
-                    <a href="/app"><Button bsStyle="success">Take Again</Button></a>
+                    <Button bsStyle="success" href="/">Take Again</Button>
                 </Well>
                 <Well>
                     <h3>Answer Key</h3>

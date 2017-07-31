@@ -1,17 +1,42 @@
+body {
+    background-color: lightblue;
+}
+
+.scorebox {
+    font-size: 200%;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.score {
+    color: green;
+    font-weight: bold;
+}
+    
 .choice {
+    font-size: 140%;
     margin-left: 10px;
-} 
+}
+
 .choice-id {
     font-weight: bold;
     margin-right: 4px;
 }
+
+.category {
+    font-size: 120%;
+}
+
 .difficulty {
+    font-size: 120%;
     text-transform: uppercase;
     font-weight: bold;
 }
+
 .answer-key {
     margin: 0 0 3px 0;
 }
+
 .wrong-x {
     font-size: 200%;
     font-weight: bolder;

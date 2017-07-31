@@ -36,7 +36,7 @@ class Question extends Component {
         return (
             <div>
                 <Well>
-                    <h3>{question.text}</h3>
+                    <h3><center>{question.text}</center></h3>
                     <hr />
                     <ListGroup>
                         {
@@ -58,7 +58,9 @@ class Question extends Component {
                             })
                         }
                     </ListGroup>
-                    <strong>Category: </strong>{question.category}
+                    <span className="category">
+                        <strong>Category: </strong>{question.category}
+                    </span>
                     <span className="difficulty pull-right">{question.difficulty}</span><br />
                 </Well>
                 {
