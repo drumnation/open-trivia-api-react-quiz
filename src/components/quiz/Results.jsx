@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import AnswerKey from './AnswerKey.jsx'
+import AnswerKey from './AnswerKey'
 import { Button, Well } from 'react-bootstrap'
 
 class Results extends Component {

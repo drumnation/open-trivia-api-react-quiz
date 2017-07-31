@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import QuestionList from './components/quiz/QuestionList.jsx'
-import Scorebox from './components/quiz/Scorebox.jsx'
-import Results from './components/quiz/Results.jsx'
+import QuestionList from './components/quiz/QuestionList'
+import Scorebox from './components/quiz/Scorebox'
+import Results from './components/quiz/Results'
 import './App.css'
-import { createQuizData as quizData } from './api/opentdb.js'
+import { createQuizData as quizData } from './api/opentdb'
 
 class App extends Component {
   constructor(props) {

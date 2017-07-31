@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, ListGroup, ListGroupItem, Well } from 'react-bootstrap'
+import { Button, ListGroup, ListGroupItem, Well, Row, Col } from 'react-bootstrap'
 
 var results = []
 
@@ -55,10 +55,14 @@ class Question extends Component {
                             })
                         }
                     </ListGroup>
-                    <span className="category">
-                        <strong>Category: </strong>{question.category}
-                    </span>
-                    <span className="difficulty pull-right">{question.difficulty}</span><br />
+                    <Row>
+                        <Col className="category" md={11}>
+                            <strong>Category: </strong>{question.category}
+                        </Col>
+                        <Col className="difficulty" md={1}>
+                            {question.difficulty}
+                        </Col>
+                    </Row>
                 </Well>
                 {
                     results.length === 0
