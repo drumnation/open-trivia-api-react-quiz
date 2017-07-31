@@ -1,4 +1,4 @@
-# PureWow Code Challenge
+# Make a quiz code challenge
 
 ## Assignment:
 1. Create an online quiz component that can be placed on a web page. 
