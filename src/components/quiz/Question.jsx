@@ -34,6 +34,33 @@ class Question extends Component {
         const { question } = this.props
         return (
             <div>
+                {
+                    results.length === 0
+                        ? <div></div>
+                        : <Well bsStyle="small">
+                            <div className="results">
+                                <div className="center">
+                                    {
+                                        results.map( (result, index) => {
+                                            if (result === 'X') {
+                                                return (
+                                                    <span key={`wrong-${index}`} style={style.wrong}>
+                                                        {`   ${result}   `}
+                                                    </span>
+                                                )
+                                            } else {
+                                                return (
+                                                    <span key={`correct_${index}`} style={style.correct}>
+                                                        {`   ${result}   `}
+                                                    </span>
+                                                )
+                                            }
+                                        })
+                                    }
+                                </div>
+                            </div>
+                        </Well>
+                }
                 <Well>
                     <h3><center>{question.text}</center></h3>
                     <hr />
@@ -42,12 +69,11 @@ class Question extends Component {
                             this.shuffleChoices(question.choices).map((choice, index) => {
                                 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
                                 return (
-                                    <ListGroupItem key={alphabet[index]} onClick={this.onChange.bind(this, choice.text)}>
+                                    <ListGroupItem key={`choice_${index}`} onClick={this.onChange.bind(this, choice.text)}>
                                         <Button
                                             bsStyle={'primary'}
-                                            onClick={this.onChange.bind(this, choice.text)}
                                             name={question.id}
-                                            value={choice.id}
+                                            key={`choice_button_${index}`}
                                         >
                                             {alphabet[index]}
                                         </Button>
@@ -66,34 +92,6 @@ class Question extends Component {
                         </Col>
                     </Row>
                 </Well>
-                {
-                    results.length === 0
-                        ? <div></div>
-                        : <Well bsStyle="small">
-                            <div className="results">
-                                <div className="center">
-                                    {
-                                        results.map( result => {
-                                            if (result === 'X') {
-                                                return (
-                                                    <span style={style.wrong}>
-                                                        {`   ${result}   `}
-                                                    </span>
-                                                )
-                                            } else {
-                                                let i = 0
-                                                return (
-                                                    <span style={style.correct} key={i++}>
-                                                        {`   ${result}   `}
-                                                    </span>
-                                                )
-                                            }
-                                        })
-                                    }
-                                </div>
-                            </div>
-                        </Well>
-                }
             </div>
         )
     }
