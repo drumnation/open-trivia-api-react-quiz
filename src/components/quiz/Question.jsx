@@ -10,12 +10,14 @@ class Question extends Component {
         if (choice === question.correct) {
             results.push('✓')
             setScore(this.props.score + 1)
-            // setCurrent(this.props.current + 1)
-        } else {
+            setCurrent(this.props.current + 1)
+        } else if (choice !== question.correct) {
             results.push('X')
-            // setCurrent(this.props.current + 1)
+            setCurrent(this.props.current + 1)
+        } else {
+            console.log('not right or wrong')
+            setCurrent(this.props.current + 1)
         }
-        setCurrent(this.props.current + 1)
     }
 
     shuffleChoices(choices) {
@@ -40,7 +42,7 @@ class Question extends Component {
                             this.shuffleChoices(question.choices).map((choice, index) => {
                                 const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
                                 return (
-                                    <ListGroupItem key={alphabet[index]}>
+                                    <ListGroupItem key={alphabet[index]} onClick={this.onChange.bind(this, choice.text)}>
                                         <Button
                                             bsStyle={'primary'}
                                             onClick={this.onChange.bind(this, choice.text)}
