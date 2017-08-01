@@ -8,10 +8,12 @@ class AnswerKey extends Component {
                     this.props.questions.map((question, index) => {
                         return (
                             <div key={index}>
-                                <h4>Question {index + 1}</h4>
-                                {question.text}<br /><br />
-                                <h4>Answer</h4>
-                                {question.correct}
+                                <center> 
+                                    <h4>Question {index + 1}</h4>
+                                    {question.text}<br /><br />
+                                    <h4>Answer</h4>
+                                    {question.correct}
+                                </center>
                                 <hr />
                             </div>
 

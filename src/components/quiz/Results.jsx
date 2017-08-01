@@ -22,15 +22,21 @@ class Results extends Component {
         return (
             <div>
                 <Well>
-                    <h4>You Got {this.props.score} out of {this.props.questions.length} Correct</h4>
-                    <h1>{percent}%</h1>
+                    <center>
+                        <h4>You Got {this.props.score} out of {this.props.questions.length} Correct</h4>
+                        <h1>{percent}%</h1>
+                        <hr />
+                        <h2>{this.createScoreMessage(percent)}</h2>
+                    </center>
                     <hr />
-                    <h2>{this.createScoreMessage(percent)}</h2>
-                    <hr />
-                    <Button bsStyle="success" href="/">Take Again</Button>
+                    <center>
+                        <Button bsStyle="success" href="/">Take Again</Button>
+                    </center>
                 </Well>
                 <Well>
-                    <h3>Answer Key</h3>
+                    <center>
+                        <h3>Answer Key</h3>
+                    </center>
                     <hr />
                     <AnswerKey questions={this.props.questions} />
                 </Well>
