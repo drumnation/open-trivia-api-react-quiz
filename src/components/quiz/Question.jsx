@@ -10,10 +10,10 @@ class Question extends Component {
         if (choice === question.correct) {
             results.push('✓')
             setScore(this.props.score + 1)
-            setCurrent(this.props.current + 1)
+            // setCurrent(this.props.current + 1)
         } else {
             results.push('X')
-            setCurrent(this.props.current + 1)
+            // setCurrent(this.props.current + 1)
         }
         setCurrent(this.props.current + 1)
     }
@@ -72,7 +72,6 @@ class Question extends Component {
                                 <div className="center">
                                     {
                                         results.map( result => {
-                                            console.log(result)
                                             if (result === 'X') {
                                                 return (
                                                     <span style={style.wrong}>
@@ -80,8 +79,9 @@ class Question extends Component {
                                                     </span>
                                                 )
                                             } else {
+                                                let i = 0
                                                 return (
-                                                    <span style={style.correct}>
+                                                    <span style={style.correct} key={i++}>
                                                         {`   ${result}   `}
                                                     </span>
                                                 )
